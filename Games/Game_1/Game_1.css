@@ -1,0 +1,12 @@
+.jatekter {
+	width: 300px;
+	height: 300px;
+	border: solid black 1px;
+	display: flex;
+	flex-wrap: wrap;
+}
+
+.jatekter div {
+	width: 20px;
+	height: 20px;
+}
