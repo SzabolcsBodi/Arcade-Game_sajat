@@ -1,13 +1,45 @@
 // változók
 const jatekter = document.querySelector(".jatekter");
-const eredmenyJelzo = document.querySelector(".eredmeny");
+const allapotJelzo = document.querySelector(".allapotJelzo");
+const jelenlegiEredmeny = document.querySelector(".jelenlegiEredmeny");
+const legutobbiEredmeny = document.querySelector(".legutobbiEredmeny")
+const maxEredmeny = document.querySelector(".maxEredmeny");
+const NehezsegMutato = document.querySelector(".NehezsegMutato")
 const szelesseg = 15;
 const magassag = 15;
 let jatekoshelye = 202;
 let tamadok = [];
 let pontosEredmeny = 0;
 let jatekVege = false;
-let jatekVegePontszam = 5
+let sebesseg = ((localStorage.getItem("sebesseg") == null) ? 1000 : localStorage.getItem("sebesseg"))
+localStorage.setItem("sebesseg", sebesseg)
+
+legutobbiEredmeny.innerHTML = "Legutóbbi pontszám: " + ((localStorage.getItem("legutobbi") == null) ? "Nincs adat" : localStorage.getItem("legutobbi"));
+maxEredmeny.innerHTML = "Maximum pontszám: " + ((localStorage.getItem("max") == null) ? "Nincs adat" : localStorage.getItem("max"));
+NehezsegMutato.innerHTML = "Jelenlegi nehézség: " + nehezsegKiValasztas()
+
+// Időzítők a támadók generálására és mozgatására
+const tamadoGeneralas = setInterval(tamadokLetrehozasa, sebesseg);
+const tamadoMozgatas = setInterval(tamadokMozgatasa, sebesseg);
+const lezerMozgatasa = setInterval(lezerKepHozzaad, 100);
+const robbanasHozzaadas = setInterval(robbanasKepHozzaad, 300)
+const jatekosMozgatas = setInterval(jatekosKepHozzaad, 1)
+const kepTisztantarto = setInterval(kepTisztantart, 1)
+
+document.addEventListener("keydown", jatekosMozgatasa);
+document.addEventListener("keydown", loves);
+
+// Létrehozza a játéktér elemeit
+for (let i = 0; i < szelesseg * magassag; i++) {
+    const jatekMezo = document.createElement("div");
+    jatekter.appendChild(jatekMezo);
+}
+const mezok = Array.from(document.querySelectorAll(".jatekter div"));
+
+// A játékos inicializálása
+mezok[jatekoshelye].classList.add("jatekosRepulo");
+
+//egyéb fügvények:
 
 // Kép hozzáadása a támodókhoz
 function tamadokKepHozzaad() {
@@ -99,13 +131,30 @@ function tamadokMozgatasa() {
             mezok[tamadoUjPozicio].classList.add("bombazoRepulo");
         } else {
             // Ha egy támadó eléri a jatéktér alját, a játék véget ér
-            eredmenyJelzo.innerHTML = "Vesztettél!";
+            allapotJelzo.innerHTML = "A játék állapota: Vesztettél!";
             jatekVege = true;
             clearInterval(tamadoGeneralas);
             clearInterval(tamadoMozgatas);
             clearInterval(lezerMozgatasa);
             clearInterval(robbanasHozzaadas);
             clearInterval(jatekosMozgatas);
+
+            localStorage.setItem("legutobbi", pontosEredmeny);
+            
+            try {
+
+                if (pontosEredmeny == 0) {
+                    localStorage.setItem("max", pontosEredmeny);
+                }
+
+                if (pontosEredmeny > localStorage.getItem("max")) {
+                    localStorage.setItem("max", pontosEredmeny);
+                }
+
+            } catch (error) {
+                console.log("Hiba a local strorage elérésekor");
+            }
+
         }
     });
     tamadok = ujtamadok;
@@ -143,17 +192,8 @@ function loves(e) {
                 }
 
                 pontosEredmeny++;
-                eredmenyJelzo.innerHTML = pontosEredmeny;
+                jelenlegiEredmeny.innerHTML = "Jelenlegi pontszám: " + pontosEredmeny;
 
-                if (pontosEredmeny == jatekVegePontszam) { // Győzelem ellenőrzése
-                    eredmenyJelzo.innerHTML = "Nyertél!";
-                    jatekVege = true; // Játék véget ért
-                    clearInterval(tamadoGeneralas);
-                    clearInterval(tamadoMozgatas);
-                    clearInterval(lezerMozgatasa);
-                    clearInterval(robbanasHozzaadas);
-                    clearInterval(jatekosMozgatas);
-                }
             }
         } else {
             clearInterval(lezer);
@@ -185,29 +225,62 @@ function kepTisztantart() {
     const kepTisztantartas = setInterval(() => {
         kepEltavolitas();
 
-        if (pontosEredmeny == jatekVegePontszam) {
+        if (jatekVege) {
             clearInterval(kepTisztantartas);
         }
     });
 }
 
-// Időzítők a támadók generálására és mozgatására
-const tamadoGeneralas = setInterval(tamadokLetrehozasa, 1250); // 1.25 másodpercenként új támadó
-const tamadoMozgatas = setInterval(tamadokMozgatasa, 1250); // 1.25 másodpercenként mozognak lejjebb
-const lezerMozgatasa = setInterval(lezerKepHozzaad, 100);
-const robbanasHozzaadas = setInterval(robbanasKepHozzaad, 300)
-const jatekosMozgatas = setInterval(jatekosKepHozzaad, 1)
-const kepTisztantarto = setInterval(kepTisztantart, 1)
-
-document.addEventListener("keydown", jatekosMozgatasa);
-document.addEventListener("keydown", loves);
-
-// Létrehozza a játéktér elemeit
-for (let i = 0; i < szelesseg * magassag; i++) {
-    const jatekMezo = document.createElement("div");
-    jatekter.appendChild(jatekMezo);
+function torles() {
+    localStorage.removeItem("legutobbi")
+    localStorage.removeItem("max")
+    //localStorage.clear()
+    location.reload()
 }
-const mezok = Array.from(document.querySelectorAll(".jatekter div"));
 
-// A játékos inicializálása
-mezok[jatekoshelye].classList.add("jatekosRepulo");
+function nehezsegBekeres() {
+
+    let nehezseg = prompt("Milyen legyen a lehézség? (Könnyű, Közepes, Nehéz)")
+
+    switch (nehezseg) {
+        case "Könnyű":
+            sebesseg = 1250;
+            localStorage.setItem("sebesseg", 1250)
+            break;
+        case "Közepes":
+            sebesseg = 1000;
+            localStorage.setItem("sebesseg", 1000)
+            break;
+        case "Nehéz":
+            sebesseg = 750;
+            localStorage.setItem("sebesseg", 750)
+            break;
+        default:
+            alert("Kérlek a felkínált lehetőségek közül válasz!")
+            nehezsegBekeres()
+    }
+
+}
+
+function nehezsegKiValasztas() {
+
+    let eredmeny;
+
+    switch (localStorage.getItem("sebesseg")) {
+        case "1250":
+            eredmeny = "Könnyű"
+            return eredmeny;
+        case "1000":
+            eredmeny = "Közepes"
+            return eredmeny;
+        case "750":
+            eredmeny = "Nehéz"
+            return eredmeny;
+    }
+}
+
+function nehezsegAtalitas() {
+    nehezsegBekeres()
+    console.log(sebesseg)
+    location.reload()
+}
