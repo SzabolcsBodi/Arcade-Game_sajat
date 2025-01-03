@@ -3,25 +3,17 @@
 }
 
 .jatekter {
-    width: var(--size);
-    height: var(--size);
-    border: solid black 3px;
-    display: flex;
-    flex-wrap: wrap;
-    max-width: var(--size); /* Számítógépen nem haladja meg a változó méretét */
-    max-height: var(--size); /* Számítógépen nem haladja meg a változó méretét */
-    margin-left: auto;
-    margin-right: auto;
-    background-color: white;
-}
+	width: var(--size);
+	height: var(--size);
+	border: solid black 3px;
+	display: flex;
+	flex-wrap: wrap;
 
-/* Telefonokra vonatkozó szabályok */
-@media (max-width: 768px) {
-    .jatekter {
-        max-width: 90vw; /* Kisebb képernyőkön a maximális szélesség a képernyő 90%-a */
-        max-height: 90vh; /* Kisebb képernyőkön a maximális magasság a képernyő 90%-a */
-        overflow: auto; /* Görgetősáv kisebb képernyőkön */
-    }
+	max-width: fit-content;
+	margin-left: auto;
+	margin-right: auto;
+
+	background-color: white;
 }
 
 .jatekter div {
