@@ -239,7 +239,7 @@ function jatekAllapotEsPontszamJelzo() {
     jelenlegiEredmeny.innerHTML = "Jelenlegi nehézség: " + vegsoPontszam + "/" + pontszam;
 
     if (vegsoPontszam == pontszam) {
-        allapotJelzo.innerHTML = "A játék állapota: Nyertél"
+        allapotJelzo.innerHTML = "A játék állapota: Nyertél!"
     }
 }
 
