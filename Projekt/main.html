@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arcade Mania</title>
+    <style>
+        @keyframes animate-stripes {
+            0% {
+                background-position: 0 0;
+            }
+            100% {
+                background-position: 60px 0;
+            }
+        }
+
+        @keyframes auto-progress {
+            0% {
+                width: 0%;
+            }
+            100% {
+                width: 100%;
+            }
+        }
+
+        .progress-bar {
+            background-color: #1a1a1a;
+            height: 45px;
+            width: 50%; 
+            margin: 0 auto; 
+            border-radius: 5px;
+            box-shadow: 0 1px 5px #000 inset, 0 1px 0 #444;
+            position: fixed;
+            left: 50%;
+            bottom: 50px; 
+            transform: translateX(-50%); 
+            display: none; 
+        }
+
+        
+
+        .progress-bar-inner {
+            display: block;
+            height: 45px;
+            width: 0%;
+            background-color: orange;
+            border-radius: 3px;
+            box-shadow: 0 1px 0 rgba(255, 255, 255, .5) inset;
+            position: relative;
+            animation: auto-progress 5s linear forwards; 
+        }
+
+        body {
+            background-image: url('arcade1.png');
+            background-size: cover;
+            transition: background-image 0.5s ease-in-out;
+            font-family: Arial, sans-serif;
+        }
+
+        #register {
+            text-align: right;
+        }
+
+        .button {
+            float: right;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        button a {
+            color: inherit;
+        }
+
+        .container {
+            height: 200px;
+            position: relative;
+            border: none;
+        }
+        #container2{            
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+        }
+        .game-1 {
+            top: 45%; 
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        .game-2 {
+            top: 50%; 
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        .game-3 {
+            top: 55%; 
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        .button-row {
+            display: flex;
+            justify-content: center; 
+            gap: 10px; 
+        }
+        .game-link {
+            position: absolute;
+            font-size: 36px;
+            font-weight: bold;
+            color: white;
+            text-shadow: 2px 2px 4px black;
+            text-decoration: none;
+        }
+        .container3 {
+            position: relative;
+            width: 768px; 
+            height: 1365px; 
+            background: url('/mnt/data/proba.png') no-repeat center center;
+            background-size: cover;
+        }
+        #game1{
+            display: none;
+        }
+        #game2{
+            display: none;
+        }
+        #game3{
+            display: none;
+        }
+        
+    </style>
+</head>
+<body>
+    <div id="register">
+            <button id="mybutton1" style="display: show;"><a href="login.html">Login</a></button>
+            <button id="mybutton2" style="display: show;"><a href="register.html">Register</a></button>
+    </div>
+
+        <div class="progress-bar-container">
+            <div class="progress-bar stripes">
+                <span class="progress-bar-inner"></span>
+            </div>
+        </div>
+<div id="container2">        
+    <div class="button-row">
+        <div class="container3">
+            <a href="game1.html" class="game-link game-1" id="game1" style="font-size:75">Game-1</a>
+            <a href="game2.html" class="game-link game-2" id="game2" style="font-size:75">Game-2</a>
+            <a href="game3.html" class="game-link game-3" id="game3" style="font-size:75">Game-3</a>
+        </div>
+    </div>
+</div>
+
+
+
+    <script>
+        
+        setTimeout(function() {
+            document.querySelector('.progress-bar').style.display = 'block';
+        }, 0);
+
+        
+        setTimeout(function() {
+            document.body.style.backgroundImage = "url('proba.png')";
+        }, 5000);
+
+        
+        setTimeout(function() {
+            document.querySelector('.progress-bar').style.display = 'none';
+        }, 5000); 
+
+        const a1 = document.getElementById('game1');
+        const a2 = document.getElementById('game2');
+        const a3 = document.getElementById('game3');
+        setTimeout(()=>{
+            a1.style.display = 'block';
+            a2.style.display = 'block';
+            a3.style.display = 'block';
+        },5000)
+        
+    </script>
+</body>
+</html>
