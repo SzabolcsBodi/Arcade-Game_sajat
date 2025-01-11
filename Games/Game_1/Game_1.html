@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="Game_1.css">
+    <title>Repülős lövölde</title>
+</head>
+<body>
+
+    <div class="kijelzo">
+        <p class="allapotJelzo">A játék állapota: A játék fut</p>
+        <p class="jelenlegiEredmeny">Jelenlegi pontszám: 0</p>
+        <p class="legutobbiEredmeny">Legutóbbi pontszám: 0</p>
+        <p class="maxEredmeny">Maximum pontszám: 0</p>
+        <p class="NehezsegMutato">Jelenlegi nehézség: Közepes</p>
+    </div>
+    
+    <div class="jatekter"></div>
+
+    <div class="gombok">
+        <button type="button" onclick="location.reload()">Új játék indítása</button>
+        <button type="button" onclick="torles()">Mentett adatok törlése</button>
+        <button type="button" onclick="nehezsegAtalitas()">Nehézség változtatása</button>
+    </div>
+    
+    <script src="Game_1.js"></script>
+
+</body>
+</html>
