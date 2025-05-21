@@ -1,0 +1,76 @@
+.jatekter {
+	width: 455px;
+	height: 455px;
+	border: solid black 3px;
+	display: flex;
+	flex-wrap: wrap;
+
+	max-width: fit-content;
+	margin-left: auto;
+	margin-right: auto;
+
+	background-color: #abb78a;
+}
+
+.jatekter div {
+	width: 35px;
+	height: 35px;
+}
+
+.kijelzo {
+	max-width: fit-content;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 5%;
+	color: white;
+}
+
+.gombok {
+	max-width: fit-content;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 3%;
+	color: white;
+}
+
+img {
+	transform: translateY(-36px);
+}
+
+body {
+	background-image: url("assets/arcade.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    font-family: 'Press Start 2P', cursive;
+}
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: rgba(0, 0, 0, 0.8); 
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+}
+
+li {
+    float: left;
+}
+
+li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+li a:hover {
+    background-color: green;
+}
