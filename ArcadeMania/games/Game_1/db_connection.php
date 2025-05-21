@@ -1,8 +1,8 @@
 <?php
-$servername = "localhost"; // Your database server (usually localhost)
-$username = "root";        // Your database username (default for XAMPP is "root")
-$password = "";            // Your database password (default for XAMPP is empty)
-$dbname = "arcade_mania";  // Replace with your database name
+$servername = "srv1.tarhely.pro"; // Your database server (usually localhost)
+$username = "v2labgwj_kando3";        // Your database username (default for XAMPP is "root")
+$password = "UjNSCL6gLDHQGbCuNRch";   // Your database password (default for XAMPP is empty)
+$dbname = "v2labgwj_kando3";  // Replace with your database name
 
 // Create a connection
 $conn = new mysqli($servername, $username, $password, $dbname);
