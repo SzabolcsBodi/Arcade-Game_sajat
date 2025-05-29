@@ -1,0 +1,98 @@
+.jatekter {
+	margin-top: 8%;
+	width: 650px;
+	height: 650px;
+	display: flex;
+	flex-wrap: wrap;
+	max-width: fit-content;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.jatekter div {
+	width: 50px;
+	height: 50px;
+}
+
+img {
+	transform: translateY(-51px);
+}
+
+body {
+	background-image: url("assets/arcade.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    font-family: 'Press Start 2P', cursive;
+}
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: rgba(0, 0, 0, 0.8); 
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+}
+
+li {
+    float: left;
+}
+
+li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+li a:hover {
+    background-color: green;
+}
+
+#scores{
+    display: flex;
+    justify-content: space-between;
+}
+#score{
+    color: #abb78a;
+    font-size: 40px;
+    font-weight: bolder;
+    margin: 10px 0;
+}
+
+#score-container {
+    position: absolute;
+    top: 60px; 
+    left: 20px;
+    color: white;
+    font-size: 24px;
+    font-family: 'VT323', monospace;
+}
+
+#high-score-container {
+    position: absolute;
+    top: 60px; 
+    right: 20px;
+    color: white;
+    font-size: 24px;
+    font-family: 'VT323', monospace;
+}
+
+#score, #high-score {
+    margin: 0;
+    font-size: 24px;
+    font-weight: normal;
+}
+
+#score-container h1 {
+    margin: 5px 0;
+    font-size: 24px;
+    font-weight: normal;
+}
