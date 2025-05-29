@@ -1,4 +1,5 @@
 .jatekter {
+    margin-top: 8%;
 	width: 525px;
 	height: 525px;
 	border: solid black 3px;
@@ -9,7 +10,7 @@
 	margin-left: auto;
 	margin-right: auto;
 
-	background-color: #abb78a;
+	background-color: darkgreen;
 }
 
 .gombok {
@@ -17,14 +18,6 @@
 	margin-left: auto;
 	margin-right: auto;
 	margin-top: 3%;
-	color: white;
-}
-
-.kijelzo {
-	max-width: fit-content;
-	margin-left: auto;
-	margin-right: auto;
-	margin-top: 5%;
 	color: white;
 }
 
@@ -69,4 +62,56 @@ li a {
 
 li a:hover {
     background-color: green;
+}
+
+#scores{
+    display: flex;
+    justify-content: space-between;
+}
+#score{
+    color: #abb78a;
+    font-size: 40px;
+    font-weight: bolder;
+    margin: 10px 0;
+}
+
+#score-container {
+    position: absolute;
+    top: 60px; /* Below the header */
+    left: 20px;
+    color: white;
+    font-size: 24px;
+    font-family: 'VT323', monospace;
+}
+
+/* High score container styling */
+#high-score-container {
+    position: absolute;
+    top: 60px; /* Below the header */
+    right: 20px;
+    color: white;
+    font-size: 24px;
+    font-family: 'VT323', monospace;
+}
+
+#score, #high-score {
+    margin: 0;
+    font-size: 24px;
+    font-weight: normal;
+}
+
+#score-container h1 {
+    margin: 5px 0;
+    font-size: 24px;
+    font-weight: normal;
+}
+#loss-message{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-size: 24px;
+    font-family: 'VT323', monospace;
+    text-align: center;
 }

@@ -30,19 +30,27 @@ if (!isset($_SESSION['user_id'])) {
         <li style="float:right"><a href="?logout=true">Log Out</a></li>
         <li style="float:right"><a href=""><?php echo htmlspecialchars($_SESSION['username']); ?></a></li>
     </ul>
-
-    <div class="kijelzo">
-        <p class="allapotJelzo">A játék állapota: A játék fut</p>
-        <p class="jelenlegiEredmeny">Jelenlegi pontszám: 0</p>
-        <p class="maxEredmeny">Maximum pontszám: 0</p>
+ <!-- Score and High Score Section -->
+    <div id="score-container">
+        <h1 id="score" class="jelenlegiEredmeny">Score: 0</h1>
+    </div>
+    <div id="high-score-container">
+        <h1 id="high-score" class="maxEredmeny">High Score: 0</h1>
+    </div>
+    <!-- Loss message (hidden by default) -->
+    <div id="loss-message" style="display:none; text-align:center; font-size:2em; color:white; margin-bottom:10px;">
+        You lost!
+        <br><br>
+        Press Space to play again.
     </div>
     
+
     <div class="jatekter"></div>
 
-    <div class="gombok">
+    <!-- <div class="gombok">
         <h1>A játok újraindításához nyomd meg: Space</h1>
     </div>
-    
+     -->
     <script src="Game_1.js"></script>
 
 </body>

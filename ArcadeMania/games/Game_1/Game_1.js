@@ -40,7 +40,7 @@ function tamadokKepHozzaad() {
         const jatekMezo = mezok[tamadoPozicio];
         if (!jatekMezo.querySelector("img")) {
             const kep = document.createElement("img");
-            kep.src = "assets/bombazoRepulo.jpg"; // A megfelelő képfájl neve
+            kep.src = "assets/bombazoRepulo.png"; // A megfelelő képfájl neve
             kep.style.width = "100%";
             kep.style.height = "100%";
             jatekMezo.appendChild(kep);
@@ -124,19 +124,38 @@ function tamadokMozgatasa() {
             mezok[tamadoUjPozicio].classList.add("bombazoRepulo");
         } else {
             // Ha egy támadó eléri a jatéktér alját, a játék véget ér
-            allapotJelzo.innerHTML = "A játék állapota: Vesztettél!";
+            // Show the "You lost" message
+            document.getElementById('loss-message').style.display = 'block';
             jatekVege = true;
             clearInterval(tamadoGeneralas);
             clearInterval(tamadoMozgatas);
             clearInterval(lezerMozgatasa);
             clearInterval(robbanasHozzaadas);
             clearInterval(jatekosMozgatas);
+            clearInterval(kepTisztantarto);
+            
+            mezok.forEach(jatekMezo => {
+                const kep = jatekMezo.querySelector("img");
+                if (kep) {
+                    jatekMezo.removeChild(kep);
+                }
+            });
 
+            const jatekosKep = mezok[jatekoshelye].querySelector("img");
+            if (jatekosKep) {
+                mezok[jatekoshelye].removeChild(jatekosKep);
+            }
+
+            const bombazoKep = mezok[tamadok].querySelector("img");
+            if (bombazoKep) {
+                mezok[tamadok].removeChild(bombazokepKep);
+            };
         }
     });
     tamadok = ujtamadok;
     tamadokKepHozzaad();
 }
+
 
 // Játékos lövése
 function loves(e) {
@@ -169,7 +188,7 @@ function loves(e) {
                 }
 
                 pontosEredmeny++;
-                jelenlegiEredmeny.innerHTML = "Jelenlegi pontszám: " + pontosEredmeny;
+                jelenlegiEredmeny.innerHTML = "Score:" + pontosEredmeny;
                 ellenorizEsFrissitMaxEredmeny();
 
 
@@ -242,7 +261,7 @@ function fetchMaxEredmenyFromDatabase() {
     .then(data => {
         if (data.success) {
             const score = data.high_score || 0;
-            maxEredmeny.textContent = "Legjobb pontszám: " + score;
+            maxEredmeny.textContent = "High score: " + score;
         } else {
             console.error('Nem sikerült lekérni a max eredményt:', data.message);
         }
@@ -276,3 +295,4 @@ function kepTisztantart() {
         }
     });
 }
+
