@@ -135,7 +135,7 @@ button:hover {
         <div style="width: 200px; background-color: rgba(0, 0, 0, 0.8); border: 2px solid white; border-radius: 10px; padding: 10px; text-align: center;">
             <img src="./assets/game4.png" alt="Game 4" style="width: 100%; height: auto; border-radius: 5px;">
             <h3 style="color: white; font-size: 14px; margin: 10px 0;">Matrix Shooter</h3>
-            <a href="http://localhost/ArcadeMania/games/Game_4/new.html" style="text-decoration: none;">
+            <a href="http://localhost/ArcadeMania/games/Game_4/pontszam.php" style="text-decoration: none;">
                 <button>Play Game</button>
             </a>
         </div>
